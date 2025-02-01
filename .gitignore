@@ -1,0 +1,44 @@
+# Ignore Python cache and virtual environments
+__pycache__/
+.mypy_cache/
+.coverage
+
+*.py[cod]
+*.sqlite3
+
+# Ignore environment variables and secret keys
+.env
+*.secret
+
+# Ignore virtual environments
+venv/
+.venv/
+
+# Ignore IDE and editor-specific files
+.vscode/
+.idea/
+*.swp
+
+# Ignore logs and temporary files
+logs/
+*.log
+*.bak
+.DS_Store
+
+# Ignore compiled code and build artifacts
+build/
+dist/
+*.egg-info/
+
+# Ignore Docker files
+*.dockerignore
+.env.docker
+
+# Ignore Poetry cache and lock files
+poetry.lock
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore OpenAI API-related cache
+openai_cache/
