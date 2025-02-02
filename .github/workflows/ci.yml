@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push: {}         # Triggers on push for all branches
+  pull_request: {} # Triggers on pull request for all branches
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Check out the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Set up Python (adjust the version as needed)
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      # Install Poetry
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          echo "${HOME}/.local/bin" >> $GITHUB_PATH
+
+      # Install project dependencies
+      - name: Install dependencies
+        run: |
+          poetry install --no-interaction
+
+      # Check code formatting with Black
+      - name: Check code formatting (Black)
+        run: poetry run black --check .
+
+      # Run static type checking with mypy
+      - name: Run mypy
+        run: poetry run mypy --install-types --non-interactive email_client/
+
+      # Run linting with pylint
+      - name: Run pylint
+        run: poetry run pylint --disable=missing-module-docstring email_client/
+
+      # Run tests with pytest
+      - name: Run tests
+        run: poetry run pytest
+
+      # Run test coverage with pytest
+      - name: Run tests coverage
+        run: poetry run pytest --cov=email_client --cov-branch --cov-report=term-missing --cov-fail-under=90
