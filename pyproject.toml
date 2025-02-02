@@ -5,6 +5,7 @@ description = "A lightweight, Python-based email client designed to simplify the
 authors = ["Olivier Bénard"]
 license = "MIT"
 readme = "README.md"
+packages = [ {include = "email_client"} ]
 
 [tool.poetry.dependencies]
 python = "^3.12"
