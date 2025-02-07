@@ -24,13 +24,68 @@ SMTP_USE_TLS = "true"
 
 ## Usage
 
+### Send an email without content
+
 ```python
 client = EmailClient()
 
 client.send_email(
-    subject="your_subject",
-    sender="sender@gmail.com",
+    subject="Text Only Email",
+    sender="your_email@example.com",
+    recipients=["recipient@gmail.com"],
+)
+```
+
+### Send an email with only a text body (html_body omitted)
+
+```python
+client = EmailClient()
+
+client.send_email(
+    subject="Text Only Email",
+    sender="your_email@example.com",
     recipients=["recipient@gmail.com"],
     text_body="Napoléon",
+)
+```
+
+### Send an email with only an HTML body (text_body omitted)
+
+```python
+client_email = EmailClient()
+
+client_email.send_email(
+    subject="HTML Only Email",
+    sender="your_email@example.com",
+    recipients=["recipient@example.com"],
+    html_body="<h2>Only HTML Content</h2><p>This email has no plain text body.</p>",
+)
+```
+
+### Send an email with both text and HTML
+
+```python
+client_email = EmailClient()
+
+client_email.send_email(
+    subject="Text & HTML Email",
+    sender="your_email@example.com",
+    recipients=["recipient@example.com"],
+    text_body="This is the plain text version.",
+    html_body="<h2>This is the HTML version</h2><p>It has formatting.</p>",
+)
+```
+
+### Send an email with an inline image (CID-based)L
+
+```python
+client_email = EmailClient()
+
+client_email.send_email(
+    subject="Email with Inline Image",
+    sender="your_email@example.com",
+    recipients=["recipient@example.com"],
+    html_body='<h2>Image Example</h2><img src="cid:example_image">',
+    inline_images={"example_image": "path/to/image.png"},
 )
 ```
