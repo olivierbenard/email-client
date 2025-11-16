@@ -3,11 +3,12 @@ Module configuring the email client.
 """
 
 import os
-from dataclasses import dataclass, field
 import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+from dataclasses import dataclass, field
 from email.mime.image import MIMEImage
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
 from email_client import logging
 
 logger = logging.getLogger(__name__)

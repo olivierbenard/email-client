@@ -1,9 +1,11 @@
 import smtplib
+from unittest.mock import MagicMock, mock_open, patch
+
 import pytest
-from unittest.mock import patch, MagicMock, mock_open
+
 from email_client.client import (
-    EmailConfig,
     EmailClient,
+    EmailConfig,
 )
 
 
